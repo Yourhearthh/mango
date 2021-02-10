@@ -1,6 +1,8 @@
 package com.louis.mango.controller;
 
+import com.louis.mango.common.FileUtils;
 import com.louis.mango.core.http.HttpResult;
+import com.louis.mango.core.page.PageRequest;
 import com.louis.mango.model.SysMenu;
 import com.louis.mango.service.SysMenuService;
 import io.swagger.annotations.Api;
@@ -8,6 +10,8 @@ import io.swagger.annotations.ApiImplicitParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.List;
 
 @Api(value = "菜单控制器")
@@ -38,4 +42,9 @@ public class SysMenuController {
         return HttpResult.ok(sysMenuService.findTree(null, 0));
     }
 
+    @PostMapping(value="/exportExcelMenu")
+    public void exportExcelMenu(@RequestBody PageRequest pageRequest, HttpServletResponse res) {
+        File file = sysMenuService.createUserExcelFile(pageRequest);
+        FileUtils.downloadFile(res, file, file.getName());
+    }
 }

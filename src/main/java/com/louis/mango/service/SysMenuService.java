@@ -1,8 +1,10 @@
 package com.louis.mango.service;
 
+import com.louis.mango.core.page.PageRequest;
 import com.louis.mango.core.service.CurdService;
 import com.louis.mango.model.SysMenu;
 
+import java.io.File;
 import java.util.List;
 
 public interface SysMenuService extends CurdService<SysMenu> {
@@ -22,4 +24,10 @@ public interface SysMenuService extends CurdService<SysMenu> {
      */
     List<SysMenu> findByUser(String userName);
 
+    /**
+     * 生成菜单信息Excel文件
+     * @param pageRequest 要导出的分页查询参数
+     * @return
+     */
+    File createUserExcelFile(PageRequest pageRequest);
 }
