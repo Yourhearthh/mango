@@ -5,6 +5,9 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
+/**
+ * 自定义令牌对象
+ */
 public class JwtAuthenticatioToken extends UsernamePasswordAuthenticationToken {
 
     private static final long serialVersionUID = 1L;
