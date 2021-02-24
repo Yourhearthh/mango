@@ -7,6 +7,7 @@ import com.louis.mango.core.page.PageRequest;
 import com.louis.mango.model.SysUser;
 import com.louis.mango.service.SysUserService;
 import com.louis.mango.util.PasswordUtils;
+import com.louis.mango.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
