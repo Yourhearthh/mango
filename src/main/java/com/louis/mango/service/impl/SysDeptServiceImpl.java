@@ -49,7 +49,7 @@ public class SysDeptServiceImpl implements SysDeptService {
     @Override
     public int save(SysDept record) {
         if (record.getId() == null || record.getId() == 0) {
-            record.setCreateBy(SecurityUtils.getUsername());
+            record.setCreateBy(SecurityUtils.getAuthentication().getName());
             return sysDeptMapper.insertSelective(record);
         }
         return sysDeptMapper.updateByPrimaryKeySelective(record);

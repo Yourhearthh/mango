@@ -9,6 +9,7 @@ import com.louis.mango.service.SysUserService;
 import com.louis.mango.util.PasswordUtils;
 import com.louis.mango.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -92,4 +93,12 @@ public class SysUserController {
         File file = sysUserService.createUserExcelFile(pageRequest);
         FileUtils.downloadFile(res, file, file.getName());
     }
+
+    @GetMapping(value = "/getUserName")
+    public HttpResult getUserName() {
+        Authentication authentication = SecurityUtils.getAuthentication();
+        String name = authentication.getName();
+        return HttpResult.ok(sysUserService.findByName(name));
+    }
+
 }
